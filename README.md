@@ -69,7 +69,7 @@ http://localhost:5000
 
 ## 📘 Exemple d’usage
 
-Choisissez un pays comme **France (.fr)**, entrez un terme comme `companyname` puis cliquez sur **Générer les Dorks** pour obtenir des recherches préformatées, prêtes à être exécutées dans Google.
+Choisissez un pays comme **France (.fr)**, entrez un nom de domaine comme `exemple.com` puis cliquez sur **Générer les Dorks** pour obtenir des recherches préformatées, prêtes à être exécutées dans Google.
 
 ---
 
