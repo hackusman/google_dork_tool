@@ -1,90 +1,75 @@
-# 🔍 Outil de Google Dorking
+# 🔍 Google Dork Tool
 
-Un outil web intuitif pour générer des **requêtes Google Dorks** ciblées, permettant d’identifier des **fichiers exposés**, **répertoires ouverts**, **panneaux d'administration**, **failles potentielles** et bien plus, de manière **catégorisée** et **structurée**.
+Un outil web simple et efficace pour générer automatiquement des **requêtes Google Dorks** ciblées. Il permet d’identifier facilement des **fichiers sensibles exposés**, **répertoires ouverts**, **panneaux d’administration**, **failles potentielles** et bien plus, classés par catégories.
 
-> ⚠️ **Usage légal uniquement.** Cet outil est conçu à des fins éducatives et de tests de sécurité autorisés. Veuillez toujours obtenir une autorisation avant toute analyse.
-
----
-
-## 🚀 Fonctionnalités
-
-* 🎯 **Recherche ciblée par pays** (via extensions `.fr`, `.be`, `.ca`, etc.)
-* 📂 Catégorisation des dorks par type :
-
-  * Répertoires ouverts
-  * Fichiers exposés (`.pdf`, `.sql`, `.env`, etc.)
-  * Injections SQL
-  * Panneaux d'administration
-  * Fichiers de configuration sensibles
-  * Technologies vulnérables (WordPress, Joomla)
-* 💡 Interface claire avec résultats cliquables
-* 🔐 Message d’avertissement légal intégré
-* 🌍 Chargement dynamique de la liste des pays via API
+> ⚠️ **Usage légal uniquement !** Cet outil est conçu pour des tests de sécurité autorisés et à des fins pédagogiques. Ne l’utilisez jamais sans permission explicite.
 
 ---
 
-## 🛠️ Installation
+## 🚀 Fonctionnalités principales
 
-### 1. Cloner le dépôt
+- 📂 Catégories de dorks préformatées :
+  - Répertoires ouverts
+  - Fichiers exposés (`.pdf`, `.sql`, `.env`, etc.)
+  - Vulnérabilités SQL Injection
+  - Panneaux d’administration
+  - Fichiers de configuration sensibles
+  - Technologies vulnérables (WordPress, Joomla, etc.)
+- 💻 Interface web intuitive et responsive avec affichage clair des résultats
+- 🔒 Message d’avertissement sur l’utilisation légale intégré à l’interface
+
+---
+
+## 🛠️ Installation rapide
+
+### 1. Cloner ce dépôt
 
 ```bash
 git clone https://github.com/hackusman/google_dork_tool.git
 cd google_dork_tool
-```
 
-### 2. Installer les dépendances
+2. Installer les dépendances Python
 
-```bash
 pip install -r requirements.txt
-```
 
-> Assure-toi d’avoir Python 3.7+ installé.
+Veillez à avoir Python 3.7 ou supérieur.
+3. Lancer l’application
 
-### 3. Lancer l'application
-
-```bash
 python app.py
-```
 
-Ouvre ton navigateur sur :
+Puis ouvrez votre navigateur à l’adresse :
 
-```
 http://localhost:5000
-```
 
----
+📁 Structure du projet
 
-## 📁 Structure du projet
-
-```
 .
-├── app.py                   # Application Flask
+├── app.py                   # Application Flask principale
 ├── templates/
-│   └── index.html           # Interface utilisateur
-├── requirements.txt         # Dépendances Python
-└── README.md                # Ce fichier
-```
+│   └── index.html           # Template HTML pour l’interface utilisateur
+├── requirements.txt         # Dépendances Python du projet
+└── README.md                # Documentation du projet (ce fichier)
 
----
+📝 Utilisation
 
-## 📘 Exemple d’usage
+    Saisissez un nom de domaine ciblé (exemple : exemple.com)
 
-Choisissez un pays comme **France (.fr)**, entrez un nom de domaine comme `exemple.com` puis cliquez sur **Générer les Dorks** pour obtenir des recherches préformatées, prêtes à être exécutées dans Google.
+    Cliquez sur Générer les Dorks
 
----
+    Consultez les requêtes Google dorks générées, prêtes à être utilisées
 
-## ⚠️ Avertissement légal
+⚠️ Avertissement légal
 
-Cet outil est exclusivement destiné à :
+Cet outil est destiné uniquement à un usage :
 
-* Des **recherches légitimes**
-* Des **tests de sécurité autorisés**
-* Un **usage éducatif** et personnel
+    Légal,
 
-**N’utilisez jamais cet outil pour accéder ou tenter d’accéder à des systèmes sans autorisation explicite.**
+    Pour des tests de sécurité autorisés,
 
----
+    Et à des fins éducatives.
 
-## 🧠 Auteur
+L’auteur décline toute responsabilité en cas d’usage malveillant ou non autorisé.
+🧑‍💻 Auteur
 
-Développé avec ❤️ par **hackus\_man**
+Développé avec passion par hackus_man
+N’hésitez pas à contribuer ou poser vos questions via GitHub !
