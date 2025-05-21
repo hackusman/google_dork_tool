@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Outil Avancé de Google Dorking</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .container {
+            background: #f4f4f4;
+            padding: 20px;
+            border-radius: 5px;
+        }
+        select, input, button {
+            padding: 8px;
+            margin: 5px 0;
+            width: 100%;
+        }
+        button {
+            background: #333;
+            color: white;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+        }
+        .result-section {
+            margin-top: 30px;
+        }
+        .dork-category {
+            background: white;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .dork-item {
+            background: #f9f9f9;
+            padding: 10px;
+            margin: 8px 0;
+            border-left: 4px solid #333;
+            word-break: break-all;
+        }
+        .dork-item a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+        .dork-item a:hover {
+            text-decoration: underline;
+        }
+        .error {
+            color: red;
+            font-weight: bold;
+        }
+        h2 {
+            color: #333;
+            border-bottom: 2px solid #333;
+            padding-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Outil Avancé de Google Dorking</h1>
+        <p>Générez des requêtes ciblées pour trouver des vulnérabilités, fichiers exposés et répertoires ouverts.</p>
+        
+        <form method="POST">
+            {% if error %}
+                <p class="error">{{ error }}</p>
+            {% endif %}
+            
+            <label for="country">Pays cible (extension domaine):</label>
+            <select id="country" name="country" required>
+                <option value="">-- Sélectionnez un pays --</option>
+                {% for code, name in countries %}
+                    <option value="{{ code }}" {% if country_code == code %}selected{% endif %}>{{ name }} (.{{ code }})</option>
+                {% endfor %}
+            </select>
+            
+            <label for="search">Termes spécifiques (optionnel):</label>
+            <input type="text" id="search" name="search" placeholder="Ex: companyname" value="{{ search_term or '' }}">
+            
+            <button type="submit">Générer les Dorks</button>
+        </form>
+        
+        {% if dork_categories %}
+        <div class="result-section">
+            <h2>Résultats pour .{{ country_code }} {% if search_term %} - "{{ search_term }}"{% endif %}</h2>
+            
+            {% for category, dorks in dork_categories.items() %}
+            <div class="dork-category">
+                <h3>{{ category }}</h3>
+                {% for dork in dorks %}
+                <div class="dork-item">
+                    <code>{{ dork }}</code><br>
+                    <a href="https://www.google.com/search?q={{ dork|urlencode }}" target="_blank">🔍 Exécuter cette recherche</a>
+                </div>
+                {% endfor %}
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+        
+        <div class="disclaimer">
+            <p><strong>Avertissement légal:</strong> Cet outil est destiné à des tests de sécurité autorisés et à des fins éducatives uniquement. 
+            L'utilisation non autorisée pour accéder à des systèmes informatiques est illégale. Respectez toujours les lois en vigueur et obtenez 
+            une autorisation écrite avant de scanner ou tester des systèmes qui ne vous appartiennent pas.</p>
+        </div>
+    </div>
+</body>
+</html>
