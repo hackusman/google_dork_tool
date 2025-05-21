@@ -54,12 +54,6 @@ http://localhost:5000
 
 ---
 
-## 📸 Aperçu
-
-> Tu peux insérer ici une ou deux captures d’écran de l'interface (`/static/screenshot.png` par exemple).
-
----
-
 ## 📁 Structure du projet
 
 ```
