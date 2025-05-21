@@ -3,115 +3,238 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Google Dork Tool</title>
+    <title>Google Dork Tool - Développé par hackus_man</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
         body {
-            font-family: Arial, sans-serif;
-            max-width: 900px;
-            margin: 2rem auto;
-            padding: 1rem;
-            background-color: #f5f5f5;
+            font-family: 'Share Tech Mono', monospace, monospace;
+            background-color: #0f0f0f;
+            color: #00ff00;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 2rem 1rem;
+            overflow-x: hidden;
+            position: relative;
         }
         h1 {
+            margin-bottom: 0.5rem;
+            font-size: 2.8rem;
             text-align: center;
-            color: #333;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            text-shadow: 0 0 8px #00ff00;
+        }
+        h2 {
+            color: #00cc00;
+            margin-bottom: 0.5rem;
+            border-bottom: 1px solid #00cc00;
+            padding-bottom: 0.2rem;
         }
         form {
-            background: #fff;
-            padding: 1rem;
-            border-radius: 8px;
+            background: #111;
+            padding: 1.5rem 2rem;
+            border-radius: 10px;
+            box-shadow: 0 0 20px #00ff00aa;
+            max-width: 600px;
+            width: 100%;
             margin-bottom: 2rem;
-            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
         label {
-            display: block;
-            margin-top: 1rem;
             font-weight: bold;
+            font-size: 1.1rem;
+            align-self: flex-start;
         }
-        select, input[type="text"] {
+        input[type="text"] {
             width: 100%;
-            padding: 0.5rem;
-            margin-top: 0.3rem;
-            border-radius: 4px;
-            border: 1px solid #ccc;
-            font-size: 1rem;
+            padding: 0.7rem;
+            margin-top: 0.4rem;
+            border-radius: 6px;
+            border: none;
+            font-size: 1.1rem;
+            font-family: 'Share Tech Mono', monospace;
+            background-color: #222;
+            color: #0f0;
+            box-shadow: inset 0 0 8px #00ff00;
+            outline: none;
+            transition: background-color 0.3s ease;
+        }
+        input[type="text"]:focus {
+            background-color: #003300;
         }
         button {
             margin-top: 1.5rem;
-            padding: 0.7rem 1.5rem;
-            background-color: #007bff;
-            color: white;
+            padding: 0.75rem 2rem;
+            background-color: #00ff00;
+            color: #000;
             border: none;
-            border-radius: 4px;
+            border-radius: 6px;
             cursor: pointer;
-            font-size: 1.1rem;
+            font-weight: bold;
+            font-size: 1.2rem;
+            box-shadow: 0 0 12px #00ff00aa;
+            transition: background-color 0.3s ease;
         }
         button:hover {
-            background-color: #0056b3;
+            background-color: #00cc00;
+            box-shadow: 0 0 20px #00ff00;
         }
         .error {
-            color: red;
+            color: #ff4444;
             margin-top: 1rem;
+            font-weight: bold;
         }
         .dork-category {
-            background: white;
-            margin-bottom: 1.5rem;
-            padding: 1rem;
-            border-radius: 6px;
-            box-shadow: 0 0 3px rgba(0,0,0,0.1);
-        }
-        .dork-category h2 {
-            margin-top: 0;
-            color: #007bff;
+            background: #111;
+            max-width: 700px;
+            width: 100%;
+            margin-bottom: 2rem;
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 0 15px #00ff0044;
         }
         ul {
-            list-style: disc inside;
+            list-style: none;
             padding-left: 0;
+            margin: 0;
         }
         ul li {
-            margin-bottom: 0.4rem;
-            font-family: monospace;
-            background: #eee;
-            padding: 0.3rem 0.5rem;
-            border-radius: 4px;
-            word-break: break-all;
+            margin-bottom: 0.7rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #002200;
+            border: 1px solid #00cc00;
+            border-radius: 6px;
+            padding: 0.4rem 0.8rem;
+            word-break: break-word;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
+        ul li a {
+            color: #00ff00;
+            text-decoration: none;
+            flex-grow: 1;
+            margin-right: 1rem;
+            user-select: text;
+        }
+        ul li a:hover {
+            text-decoration: underline;
+        }
+        .copy-btn {
+            background: #004400;
+            border: 1px solid #00cc00;
+            color: #00ff00;
+            cursor: pointer;
+            padding: 0.3rem 0.6rem;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            user-select: none;
+            transition: background-color 0.3s ease;
+        }
+        .copy-btn:hover {
+            background-color: #00cc00;
+            color: #002200;
+        }
+
+        footer {
+            margin-top: auto;
+            font-size: 0.9rem;
+            color: #004400;
+            text-align: center;
+            padding: 1rem 0;
+            user-select: none;
+        }
+
+        /* Hacker style subtle animation background */
+        @keyframes flicker {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            pointer-events: none;
+            background:
+                repeating-linear-gradient(
+                    0deg,
+                    rgba(0,255,0,0.05),
+                    rgba(0,255,0,0.05) 1px,
+                    transparent 1px,
+                    transparent 2px
+                ),
+                repeating-linear-gradient(
+                    90deg,
+                    rgba(0,255,0,0.05),
+                    rgba(0,255,0,0.05) 1px,
+                    transparent 1px,
+                    transparent 2px
+                );
+            z-index: 0;
+            animation: flicker 2s infinite;
         }
     </style>
 </head>
 <body>
+
     <h1>Google Dork Tool</h1>
 
-    <form method="post">
-        <label for="country">Choisissez un pays :</label>
-        <select id="country" name="country" required>
-            {% for code, name in countries %}
-                <option value="{{ code }}" {% if country_code == code %}selected{% endif %}>{{ name }}</option>
-            {% endfor %}
-        </select>
-
-        <label for="search">Nom de domaine (optionnel) :</label>
-        <input type="text" id="search" name="search" placeholder="exemple.com" value="{{ search_term or '' }}" />
-
+    <form method="post" autocomplete="off">
+        <label for="search">Nom de domaine :</label>
+        <input type="text" id="search" name="search" placeholder="exemple.com" value="{{ search_term or '' }}" required autofocus />
         <button type="submit">Générer les dorks</button>
-
         {% if error %}
             <p class="error">{{ error }}</p>
         {% endif %}
     </form>
 
     {% if dork_categories %}
-        <h2>Résultats des dorks pour {{ search_term if search_term else country_code }}</h2>
+        <h2>Résultats des dorks pour « {{ search_term }} »</h2>
         {% for category, dorks in dork_categories.items() %}
             <div class="dork-category">
                 <h2>{{ category }}</h2>
                 <ul>
                     {% for dork in dorks %}
-                        <li>{{ dork }}</li>
+                        <li>
+                            <a href="https://www.google.com/search?q={{ dork | urlencode }}" target="_blank" rel="noopener noreferrer" title="Rechercher ce dork sur Google">
+                                {{ dork }}
+                            </a>
+                            <button class="copy-btn" data-dork="{{ dork }}" title="Copier ce dork">📋</button>
+                        </li>
                     {% endfor %}
                 </ul>
             </div>
         {% endfor %}
     {% endif %}
+
+    <footer>Outil développé par <strong>hackus_man</strong></footer>
+
+    <audio autoplay loop><source src="https://nathanprinsley-files.prinsh.com/data-1/mp3/fearless_tule.mp3" type="audio/mpeg">
+	    Votre navigateur ne supporte pas l'audio.
+    </audio>
+
+    <script>
+        // Copie dans le presse-papier
+        document.querySelectorAll('.copy-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const dork = button.getAttribute('data-dork');
+                navigator.clipboard.writeText(dork).then(() => {
+                    button.textContent = '✅';
+                    setTimeout(() => button.textContent = '📋', 1500);
+                }).catch(() => {
+                    alert('Impossible de copier le dork.');
+                });
+            });
+        });
+    </script>
+
 </body>
 </html>
 
