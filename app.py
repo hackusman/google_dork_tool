@@ -1,29 +1,15 @@
 from flask import Flask, render_template, request
-import requests
+import urllib.parse
 
 app = Flask(__name__)
 
-COUNTRIES_API = "https://restcountries.com/v3.1/all"
+# Filtre Jinja pour encoder une chaîne en URL safe
+@app.template_filter('url_encode')
+def url_encode_filter(s):
+    return urllib.parse.quote_plus(s)
 
-def get_countries():
-    try:
-        response = requests.get(COUNTRIES_API, timeout=5)
-        response.raise_for_status()
-        countries = sorted([(country['cca2'].lower(), country['name']['common']) 
-                          for country in response.json()])
-        return countries
-    except:
-        return [
-            ('fr', 'France'), ('be', 'Belgique'), ('ca', 'Canada'),
-            ('ch', 'Suisse'), ('de', 'Allemagne'), ('us', 'États-Unis'),
-            ('tg', 'Togo')
-        ]
-
-def generate_dorks(country_code, domain_name):
-    if domain_name:
-        site_filter = f"site:{domain_name}"
-    else:
-        site_filter = f"site:{country_code}"
+def generate_dorks(domain_name):
+    site_filter = f"site:{domain_name}"
 
     dork_categories = {
         "Répertoires ouverts": [
@@ -66,23 +52,19 @@ def generate_dorks(country_code, domain_name):
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    countries = get_countries()
-    
+    dork_categories = None
+    search_term = ""
+
     if request.method == 'POST':
-        country_code = request.form.get('country')
-        domain_name = request.form.get('search', '').strip()
-        
-        dork_categories = generate_dorks(country_code, domain_name)
-        
-        return render_template(
-            'index.html',
-            countries=countries,
-            dork_categories=dork_categories,
-            search_term=domain_name,
-            country_code=country_code
-        )
-    
-    return render_template('index.html', countries=countries)
+        search_term = request.form.get('search', '').strip()
+        if search_term:
+            dork_categories = generate_dorks(search_term)
+
+    return render_template(
+        'index.html',
+        dork_categories=dork_categories,
+        search_term=search_term
+    )
 
 if __name__ == '__main__':
     app.run(debug=True)
