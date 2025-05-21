@@ -1,6 +1,5 @@
 from flask import Flask, render_template, request
 import requests
-from urllib.parse import quote
 
 app = Flask(__name__)
 
@@ -16,44 +15,50 @@ def get_countries():
     except:
         return [
             ('fr', 'France'), ('be', 'Belgique'), ('ca', 'Canada'),
-            ('ch', 'Suisse'), ('de', 'Allemagne'), ('us', 'États-Unis')
+            ('ch', 'Suisse'), ('de', 'Allemagne'), ('us', 'États-Unis'),
+            ('tg', 'Togo')
         ]
 
-def generate_dorks(country_code, search_term):
+def generate_dorks(country_code, domain_name):
+    if domain_name:
+        site_filter = f"site:{domain_name}"
+    else:
+        site_filter = f"site:{country_code}"
+
     dork_categories = {
         "Répertoires ouverts": [
-            f'site:{country_code} intitle:"index of" {search_term}',
-            f'site:{country_code} "index of" inurl:ftp {search_term}',
-            f'site:{country_code} intitle:"index of" inurl:backup {search_term}'
+            f'{site_filter} intitle:"index of"',
+            f'{site_filter} "index of" inurl:ftp',
+            f'{site_filter} intitle:"index of" inurl:backup'
         ],
         "Fichiers exposés": [
-            f'site:{country_code} filetype:pdf {search_term}',
-            f'site:{country_code} filetype:sql {search_term}',
-            f'site:{country_code} filetype:env {search_term}',
-            f'site:{country_code} filetype:log {search_term}',
-            f'site:{country_code} ext:php intitle:phpinfo "published by the PHP Group"'
+            f'{site_filter} filetype:pdf',
+            f'{site_filter} filetype:sql',
+            f'{site_filter} filetype:env',
+            f'{site_filter} filetype:log',
+            f'{site_filter} ext:php intitle:phpinfo "published by the PHP Group"'
         ],
         "Injection SQL": [
-            f'site:{country_code} inurl:item_id= {search_term}',
-            f'site:{country_code} inurl:id= inurl:page= {search_term}',
-            f'site:{country_code} inurl:product= {search_term}',
-            f'site:{country_code} inurl:category= {search_term}'
+            f'{site_filter} inurl:item_id=',
+            f'{site_filter} inurl:id= inurl:page=',
+            f'{site_filter} inurl:product=',
+            f'{site_filter} inurl:category='
         ],
         "Panels d'administration": [
-            f'site:{country_code} intitle:"admin" {search_term}',
-            f'site:{country_code} inurl:admin {search_term}',
-            f'site:{country_code} inurl:login {search_term}',
-            f'site:{country_code} intitle:"login" {search_term}'
+            f'{site_filter} intitle:"admin"',
+            f'{site_filter} inurl:admin',
+            f'{site_filter} inurl:login',
+            f'{site_filter} intitle:"login"'
         ],
         "Configurations sensibles": [
-            f'site:{country_code} ext:xml | ext:conf | ext:cnf | ext:reg | ext:inf | ext:rdp | ext:cfg | ext:txt | ext:ora | ext:ini {search_term}',
-            f'site:{country_code} "db_password" ext:env {search_term}',
-            f'site:{country_code} "API_KEY" ext:env {search_term}'
+            f'{site_filter} ext:xml | ext:conf | ext:cnf | ext:reg | ext:inf | ext:rdp | ext:cfg | ext:txt | ext:ora | ext:ini',
+            f'{site_filter} "db_password" ext:env',
+            f'{site_filter} "API_KEY" ext:env'
         ],
         "Technologies vulnérables": [
-            f'site:{country_code} "powered by wordpress" {search_term}',
-            f'site:{country_code} "powered by joomla" inurl:administrator {search_term}',
-            f'site:{country_code} "wp-content" ext:php {search_term}'
+            f'{site_filter} "powered by wordpress"',
+            f'{site_filter} "powered by joomla" inurl:administrator',
+            f'{site_filter} "wp-content" ext:php'
         ]
     }
     
@@ -65,18 +70,15 @@ def index():
     
     if request.method == 'POST':
         country_code = request.form.get('country')
-        search_term = request.form.get('search', '').strip()
+        domain_name = request.form.get('search', '').strip()
         
-        if not search_term:
-            return render_template('index.html', countries=countries, error="Veuillez entrer un terme de recherche")
-        
-        dork_categories = generate_dorks(country_code, search_term)
+        dork_categories = generate_dorks(country_code, domain_name)
         
         return render_template(
             'index.html',
             countries=countries,
             dork_categories=dork_categories,
-            search_term=search_term,
+            search_term=domain_name,
             country_code=country_code
         )
     
@@ -84,3 +86,4 @@ def index():
 
 if __name__ == '__main__':
     app.run(debug=True)
+
