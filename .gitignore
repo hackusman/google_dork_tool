@@ -1,0 +1,23 @@
+# Environnements virtuels Python
+venv/
+env/
+*.env
+
+# Fichiers Python compilés et cache
+__pycache__/
+*.pyc
+
+# IDE / éditeur
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Dossier Flask instance pour config sensible
+instance/
+
+# Fichiers de config sensibles (ex: clés, tokens)
+secrets.json
+config.py
+
