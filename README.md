@@ -5,6 +5,11 @@ Un outil web simple et efficace pour générer automatiquement des **requêtes G
 > ⚠️ **Usage légal uniquement !** Cet outil est conçu pour des tests de sécurité autorisés et à des fins pédagogiques. Ne l’utilisez jamais sans permission explicite.
 
 ---
+## 🖼️ Aperçu de l'outil
+
+Voici une capture d'écran de l'interface :
+
+![Interface Google Dork Tool](images/demo.png)
 
 ## 🚀 Fonctionnalités principales
 
