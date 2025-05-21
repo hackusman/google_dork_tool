@@ -27,49 +27,68 @@ Un outil web simple et efficace pour générer automatiquement des **requêtes G
 ```bash
 git clone https://github.com/hackusman/google_dork_tool.git
 cd google_dork_tool
+````
 
-2. Installer les dépendances Python
+### 2. Installer les dépendances Python
 
+```bash
 pip install -r requirements.txt
+```
 
-Veillez à avoir Python 3.7 ou supérieur.
-3. Lancer l’application
+*Veillez à avoir Python 3.7 ou supérieur.*
 
+### 3. Lancer l’application
+
+```bash
 python app.py
+```
 
 Puis ouvrez votre navigateur à l’adresse :
 
+```
 http://localhost:5000
+```
 
-📁 Structure du projet
+---
 
+## 📁 Structure du projet
+
+```
 .
 ├── app.py                   # Application Flask principale
 ├── templates/
 │   └── index.html           # Template HTML pour l’interface utilisateur
 ├── requirements.txt         # Dépendances Python du projet
 └── README.md                # Documentation du projet (ce fichier)
+```
 
-📝 Utilisation
+---
 
-    Saisissez un nom de domaine ciblé (exemple : exemple.com)
+## 📝 Utilisation
 
-    Cliquez sur Générer les Dorks
+* Saisissez un nom de domaine ciblé (exemple : `exemple.com`)
+* Cliquez sur **Générer les Dorks**
+* Consultez les requêtes Google dorks générées, prêtes à être utilisées
 
-    Consultez les requêtes Google dorks générées, prêtes à être utilisées
+---
 
-⚠️ Avertissement légal
+## ⚠️ Avertissement légal
 
 Cet outil est destiné uniquement à un usage :
 
-    Légal,
-
-    Pour des tests de sécurité autorisés,
-
-    Et à des fins éducatives.
+* **Légal**,
+* Pour des **tests de sécurité autorisés**,
+* Et à des fins **éducatives**.
 
 L’auteur décline toute responsabilité en cas d’usage malveillant ou non autorisé.
-🧑‍💻 Auteur
 
-Développé avec passion par hackus_man
+---
+
+## 🧑‍💻 Auteur
+
+Développé avec passion par **hackus\_man**
 N’hésitez pas à contribuer ou poser vos questions via GitHub !
+
+---
+
+*Merci de respecter les bonnes pratiques éthiques en cybersécurité !*
