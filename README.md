@@ -28,8 +28,8 @@ Un outil web intuitif pour générer des **requêtes Google Dorks** ciblées, pe
 ### 1. Cloner le dépôt
 
 ```bash
-git clone https://github.com/ton-pseudo/advanced-google-dorker.git
-cd advanced-google-dorker
+git clone https://github.com/hackusman/google_dork_tool.git
+cd google_dork_tool
 ```
 
 ### 2. Installer les dépendances
