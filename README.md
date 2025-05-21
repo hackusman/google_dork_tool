@@ -93,4 +93,4 @@ Cet outil est exclusivement destiné à :
 
 ## 🧠 Auteur
 
-Développé avec ❤️ par **hackus\_man
+Développé avec ❤️ par **hackus\_man**
