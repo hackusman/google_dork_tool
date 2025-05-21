@@ -87,7 +87,6 @@ L’auteur décline toute responsabilité en cas d’usage malveillant ou non au
 ## 🧑‍💻 Auteur
 
 Développé avec passion par **hackus\_man**
-N’hésitez pas à contribuer ou poser vos questions via GitHub !
 
 ---
 
